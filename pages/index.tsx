@@ -28,6 +28,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import OvenPlayer from 'ovenplayer';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -106,7 +107,7 @@ const posts = [
     image: "https://live.attamari.jp/thumb/stream3/thumb.jpg"
   },
 ]
-
+type Anchor = 'top' | 'left' | 'bottom' | 'right';
 const Home: NextPage = () => {
 
   const theme = useTheme();
@@ -119,6 +120,65 @@ const Home: NextPage = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const toggleDrawer =
+    (anchor: Anchor, open: boolean) =>
+      (event: React.KeyboardEvent | React.MouseEvent) => {
+        if (
+          event &&
+          event.type === 'keydown' &&
+          ((event as React.KeyboardEvent).key === 'Tab' ||
+            (event as React.KeyboardEvent).key === 'Shift')
+        ) {
+          return;
+        }
+
+        setState({ ...state, [anchor]: open });
+      };
+  const list = (anchor: Anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
+
   return (
     <div className={"flex flex-row w-screen h-screen bg-base dark:bg-baseDark"}>
       <Box sx={{ display: 'flex' }}>
@@ -128,9 +188,10 @@ const Home: NextPage = () => {
             <IconButton
               color="inherit"
               aria-label="open drawer"
-              onClick={handleDrawerOpen}
+              // onClick={handleDrawerOpen}
               edge="start"
               sx={{ mr: 2, ...(open && { display: 'none' }) }}
+              onClick={toggleDrawer('left', true)}
             >
               <MenuIcon />
             </IconButton>
@@ -139,7 +200,7 @@ const Home: NextPage = () => {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer
+        <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS}
           sx={{
             width: drawerWidth,
             flexShrink: 0,
@@ -150,10 +211,15 @@ const Home: NextPage = () => {
           }}
           variant="persistent"
           anchor="left"
-          open={open}
+          open={state['left']}
+          onClose={toggleDrawer('left', false)}
+          onOpen={toggleDrawer('left', true)}
         >
           <DrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
+            <IconButton
+              //  onClick={handleDrawerClose}
+              onClick={toggleDrawer('left', false)}
+            >
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </DrawerHeader>
@@ -185,7 +251,7 @@ const Home: NextPage = () => {
             ))}
           </List>
           {/* <Divider /> */}
-        </Drawer>
+        </SwipeableDrawer>
         <Main open={open}>
           <DrawerHeader />
           <Container maxWidth="sm">
