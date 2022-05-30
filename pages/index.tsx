@@ -107,20 +107,12 @@ const posts = [
     image: "https://live.attamari.jp/thumb/stream3/thumb.jpg"
   },
 ]
+
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 const Home: NextPage = () => {
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
   const [state, setState] = React.useState({
     top: false,
     left: false,
