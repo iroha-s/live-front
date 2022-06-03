@@ -106,6 +106,11 @@ const posts = [
     excerpt: "2代目の3Dプリンター",
     image: "https://live.attamari.jp/thumb/stream3/thumb.jpg"
   },
+  // {
+  //   title: "3D Printer3",
+  //   excerpt: "3代目の3Dプリンター",
+  //   image: "https://live.attamari.jp/thumb/stream4/thumb.jpg"
+  // },
 ]
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
@@ -260,6 +265,7 @@ const Home: NextPage = () => {
                     <div>
                       <CardMedia
                         component="img"
+                        // height="140" 
                         image={"https://live.attamari.jp/thumb/stream" + (index + 1).toString() + "/thumb.jpg"}
                         title={text.title}
                       />
@@ -276,9 +282,6 @@ const Home: NextPage = () => {
                           href={'https://live.attamari.jp/watch.php?n=stream' + (index + 1).toString()}
                         >
                           View
-                        </Button>
-                        <Button color="primary" variant="contained">
-                          Edit
                         </Button>
                       </CardActions>
                     </div>
