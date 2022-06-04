@@ -265,7 +265,7 @@ const Home: NextPage = () => {
                     <div>
                       <CardMedia
                         component="img"
-                        // height="140" 
+                        height="210"
                         image={"https://live.attamari.jp/thumb/stream" + (index + 1).toString() + "/thumb.jpg"}
                         title={text.title}
                       />
