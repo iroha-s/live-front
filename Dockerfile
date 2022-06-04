@@ -23,7 +23,6 @@ COPY . .
 
 RUN yarn build
 
-COPY out .
 
 # If using npm comment out above and use below instead
 # RUN npm run build
