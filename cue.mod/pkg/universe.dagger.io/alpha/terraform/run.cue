@@ -68,12 +68,12 @@ _#DefaultLogLevel: "off"
 		steps: [
 			container.#input,
 			docker.#Copy & {
-				dest:     "/pages"
+				dest:     "/src"
 				contents: source
 			},
 			docker.#Run & {
 				"always": always
-				workdir:  "/pages"
+				workdir:  "/src"
 				command: {
 					name: cmd
 					args: _thisCmdArgs
@@ -85,7 +85,7 @@ _#DefaultLogLevel: "off"
 
 	_afterSource: core.#Subdir & {
 		input: _run.output.rootfs
-		path:  "/pages"
+		path:  "/src"
 	}
 
 	// Terraform image

@@ -79,7 +79,7 @@ import (
 
 	// Path of the yarn script's output directory
 	// May be absolute, or relative to the workdir
-	outputDir: string | *"/.next"
+	outputDir: string | *"./.next"
 
 	// Output directory
 	output: container.export.directories."/output"
@@ -99,9 +99,9 @@ import (
 			}
 		}
 
-		workdir: "/pages"
+		workdir: "/src"
 		mounts: Source: {
-			dest:     "/pages"
+			dest:     "/src"
 			contents: source
 		}
 		script: contents: """
