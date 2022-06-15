@@ -17,6 +17,9 @@ _#DefaultLogLevel: "off"
 	// Terraform source code
 	source: dagger.#FS
 
+	// If set to true, the cache will never be triggered
+	always: bool | *false
+
 	// Terraform command (i.e. init, plan, apply)
 	cmd: string
 
@@ -65,11 +68,12 @@ _#DefaultLogLevel: "off"
 		steps: [
 			container.#input,
 			docker.#Copy & {
-				dest:     "/src"
+				dest:     "/pages"
 				contents: source
 			},
 			docker.#Run & {
-				workdir: "/src"
+				"always": always
+				workdir:  "/pages"
 				command: {
 					name: cmd
 					args: _thisCmdArgs
@@ -81,7 +85,7 @@ _#DefaultLogLevel: "off"
 
 	_afterSource: core.#Subdir & {
 		input: _run.output.rootfs
-		path:  "/src"
+		path:  "/pages"
 	}
 
 	// Terraform image
