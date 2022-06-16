@@ -34,6 +34,26 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## デプロイコマンド
+
 ```bash
 rsync -a ~/git_dir/live-front/out/* iroha@homeserver-1:/var/www/live/
+```
+
+### dagger でローカルデプロイ
+
+dagger の update を行ってから実行をする
+
+```bash
+dagger project update
+```
+
+環境変数が必要なので export する
+
+```bash
+export USER=
+export NETLIFY_TOKEN=
+```
+
+```bash
+dagger do deploy
 ```
