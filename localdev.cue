@@ -5,7 +5,8 @@ import (
 )
 
 client: {
-	filesystem: "./.next": write: contents: actions.build.output
+  //ここでoutputディレクトリを作成する
+	filesystem: "./build": write: contents: actions.build.output
 	env: {
 		NETLIFY_TOKEN: dagger.#Secret
 		USER:          string

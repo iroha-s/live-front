@@ -9,7 +9,7 @@ on:
 # Dagger plan gets configured via client environment variables
 env:
   # This needs to be unique across all of netlify.app
-  USER: old-out2
+  USER: ${{ secrets.USER }}
 
 jobs:
   dagger:
