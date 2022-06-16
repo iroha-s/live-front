@@ -80,10 +80,10 @@ import (
 			}
 			NETLIFY_ACCOUNT: team
 		}
-		workdir: "/src"
+		workdir: "/out"
 		mounts: {
 			"Site contents": {
-				dest:       "/src"
+				dest:       "/out"
 				"contents": contents
 			}
 			"Netlify token": {
