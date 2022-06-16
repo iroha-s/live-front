@@ -15,7 +15,7 @@ dagger.#Plan & {
 			path: "."
 			exclude: [
 				"node_modules",
-				"build",
+				"out",
 				"*.cue",
 				"*.md",
 				".git",

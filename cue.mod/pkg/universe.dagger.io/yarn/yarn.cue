@@ -79,7 +79,7 @@ import (
 
 	// Path of the yarn script's output directory
 	// May be absolute, or relative to the workdir
-	outputDir: string | *"/out"
+	outputDir: string | *"./out"
 
 	// Output directory
 	output: container.export.directories."/output"
