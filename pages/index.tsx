@@ -20,6 +20,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import LiveTvIcon from '@mui/icons-material/LiveTv';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -222,7 +223,7 @@ const Home: NextPage = () => {
           </DrawerHeader>
           <Divider />
           <List>
-            {['Home', 'Live'].map((text, index) => (
+            {/* {['Home', 'Live'].map((text, index) => (
               <ListItem key={index} disablePadding>
                 <Link href={text}>
                   <ListItemButton>
@@ -233,13 +234,14 @@ const Home: NextPage = () => {
                   </ListItemButton>
                 </Link>
               </ListItem>
-            ))}
+            ))} */}
             {posts.map((text, index) => (
               <ListItem key={text.title} disablePadding>
                 <Link href={text.image}>
                   <ListItemButton>
                     <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                      {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                      <LiveTvIcon />
                     </ListItemIcon>
                     <ListItemText primary={text.title} />
                   </ListItemButton>
