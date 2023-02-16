@@ -261,14 +261,13 @@ const Home: NextPage = () => {
               {posts.map((text, index) => (
                 <Grid key={text.title} item xs={12} sm={6} md={4}>
                   <Card>
-
-                    <div>
-                      <CardMedia
-                        component="img"
-                        height="210"
-                        image={"https://live.attamari.jp/thumb/stream" + (index + 1).toString() + "/thumb.jpg"}
-                        title={text.title}
-                      />
+                    <CardMedia
+                      component="img"
+                      height="210"
+                      image={"https://live.attamari.jp/thumb/stream" + (index + 1).toString() + "/thumb.jpg"}
+                      title={text.title}
+                    />
+                    <div style={{ background: "whitesmoke", color: 'black', textAlign: "center" }}>
                       <CardContent >
                         <Typography gutterBottom variant="h5" component="h2">
                           {text.title}
@@ -277,11 +276,12 @@ const Home: NextPage = () => {
                           {text.excerpt}
                         </Typography>
                       </CardContent>
-                      <CardActions>
+
+                      <CardActions style={{ textAlign: "center", justifyContent: 'center'}}>
                         <Button color="primary" variant="contained"
                           href={'https://live.attamari.jp/watch.php?n=stream' + (index + 1).toString()}
                         >
-                          View
+                          見る
                         </Button>
                       </CardActions>
                     </div>
